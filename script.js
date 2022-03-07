@@ -1,5 +1,4 @@
 //Global Variables
-const player = document.querySelector(input).value
 const cards = []
 ///sum variable to keep track of score in hand
 const sum = 0
@@ -11,8 +10,8 @@ const btn = document.getElementById('start')
 const bttn = document.getElementById('hit')
 const button = document.getElementById('replay')
 const cardsHand = document.getElementById('cards')
-const playerLayout = document.getElementById('player')
-///printout playername and current bank below
+const playerBank = document.getElementById('bank')
+playerBank.innerHTML = 'Bank ~ $' + bank
 
 //Functions below
 ///how to randomize cards to go into players hand
@@ -28,7 +27,7 @@ const startGame = () => {
   playGame()
 }
 
-///render game(ie play hand)
+///render game(ie play hand) - how to add cards to screen and render messages based on sum of cards; if blackjack or higher than dealer + $100 once game reaches $1000 refer to winner.html
 const playGame = () => {
   cardsHand.innerText = 'Cards: '
 }
