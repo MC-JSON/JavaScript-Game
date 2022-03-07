@@ -4,6 +4,22 @@ const cards = []
 const sum = 0
 const bank = 300
 const message = ''
+const suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades']
+const faces = [
+  'Ace',
+  'King',
+  'Queen',
+  'Jack',
+  'Ten',
+  'Nine',
+  'Eight',
+  'Seven',
+  'Six',
+  'Five',
+  'Four',
+  'Three',
+  'Two'
+]
 const blackJack = false
 const stillPlaying = false
 const btn = document.getElementById('start')
