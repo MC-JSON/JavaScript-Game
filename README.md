@@ -10,7 +10,7 @@
 
 ### Description:
 
-#### BlackJack game built using JavaScript, HTML and CSS. Users will be able to interact to play their own BlackJack hands. The MVP for this project will be to create a fully interactive BlackJack game where the user will either stand, achieve BlackJack or bust. There will also be a running 'bank' counter to keep track of players overall stance.
+#### Blackjack game built using JavaScript, HTML and CSS. Users will be able to interact to play their own Blackjack hands. The MVP for this project will be to create a fully interactive Blackjack game where the user will either stand, achieve BlackJack or bust. There will also be a running 'bank' counter to keep track of players overall stance.
 
 ---
 
