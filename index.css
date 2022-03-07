@@ -13,6 +13,13 @@ h1 {
   margin-bottom: 4px;
 }
 
+input {
+  border: none;
+  background-color: whitesmoke;
+  width: 100px;
+  border-bottom: 3px solid red;
+}
+
 button {
   color: whitesmoke;
   width: 132px;
