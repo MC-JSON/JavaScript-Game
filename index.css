@@ -1,7 +1,7 @@
 body {
   font-family: fantasy;
   background-image: url('../felt.jpeg');
-  background-size: cover;
+  background-size: 100%;
   color: whitesmoke;
   font-weight: bold;
   text-align: center;
@@ -25,6 +25,7 @@ button {
   width: 132px;
   height: 45px;
   background: red;
+  font-family: fantasy;
   font-weight: bold;
   font-size: 18px;
   border: none;
