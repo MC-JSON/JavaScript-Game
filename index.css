@@ -1,0 +1,24 @@
+body {
+  font-family: fantasy;
+  background-image: url('../felt.jpeg');
+  background-size: cover;
+  color: whitesmoke;
+  font-weight: bold;
+  text-align: center;
+}
+
+h1 {
+  color: red;
+  font-size: 80px;
+  margin-bottom: 4px;
+}
+
+button {
+  color: whitesmoke;
+  width: 132px;
+  height: 45px;
+  background: red;
+  font-weight: bold;
+  font-size: 18px;
+  border: none;
+}
