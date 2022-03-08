@@ -7,7 +7,7 @@ let sumDealer = 0
 let amount = 0
 let bank = 300
 let message = document.getElementById('message')
-let suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades']
+let suits = ['♣', '♦', '♥', '♠']
 let faces = [
   'Ace',
   'King',
