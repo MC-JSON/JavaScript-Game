@@ -106,52 +106,50 @@ const playGame = () => {
 }
 
 //check for end of game scenario
-// const endGame = () => {
-//   updateSum()
-//   if (gameOver) {
-//     while (sumDealer < sumPlayer && sumPlayer <= 21 && sumDealer <= 21) {
-//       dealerHand.dealCard()
-//       updateSum()
-//     }
-//   }
-//   if (sumPlayer > 21) {
-//     playerWins = false
-//     gameOver = true
-//   } else if ((sumPlayer = 21)) {
-//     playerWins = true
-//     blackJack = true
-//     gameOver = true
-//     bank += 100
-//   } else if (sumDealer > 21) {
-//     playerWins = true
-//     gameOver = true
-//     bank += 100
-//   } else if (gameOver) {
-//     if (sumPlayer > sumDealer) {
-//       playerWins = true
-//       bank += 100
-//     } else {
-//       playerWins = false
-//     }
-//   }
-//   if ((bank = 1000)) {
-//     gameOver = true
-//   }
-// }
+const endGame = () => {
+  updateSum()
+  if (gameOver) {
+    while (sumDealer < sumPlayer && sumPlayer <= 21 && sumDealer <= 21) {
+      dealerHand.dealCard()
+      updateSum()
+    }
+  }
+  if (sumPlayer > 21) {
+    playerWins = false
+    gameOver = true
+  } else if ((sumPlayer = 21)) {
+    playerWins = true
+    blackJack = true
+    gameOver = true
+    bank += 100
+  } else if (sumDealer > 21) {
+    playerWins = true
+    gameOver = true
+    bank += 100
+  } else if (gameOver) {
+    if (sumPlayer > sumDealer) {
+      playerWins = true
+      bank += 100
+    } else {
+      playerWins = false
+    }
+  }
+  if ((bank = 1000)) {
+    gameOver = true
+  }
+}
 
 ///deal new card if requested
 let dealCard = () => {
   if (gameOver === false && blackJack === false) {
-    buildDeck()
-    shuffle()
     card = deck.pop(card)
     cardsHandArr.push(card)
     cardsHand.append(
-      ' & ' + cardsHandArr[0].Faces,
-      ' of ' + cardsHandArr[0].Suit
+      ' & ' + cardsHandArr[4].Faces,
+      ' of ' + cardsHandArr[4].Suit
     )
     updateSum()
-    //endGame()
+    // //endGame()
   }
 }
 
@@ -168,6 +166,7 @@ const newHand = () => {
   sumDealer = 0
   gameOver = false
   playerWins = false
+  blackJack = false
   startGame()
 }
 
@@ -181,7 +180,7 @@ let getSum = (cardsHandArr) => {
   let ace = false
   for (let i = 0; i < cardsHandArr.length; i++) {
     let card = cardsHandArr[i]
-    sum += card
+    sum += card.value
     if (card.faces == 'Ace') {
       ace = true
     }
