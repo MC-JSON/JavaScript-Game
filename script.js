@@ -1,5 +1,6 @@
 //Global Variables
 let deck = []
+let card = null
 ///sum variable to keep track of score in hand
 let sumPlayer = 0
 let sumDealer = 0
@@ -79,24 +80,18 @@ const startGame = () => {
 
 ///render game(ie play hand) - how to add cards to screen and render messages based on sum of cards; if blackjack or higher than dealer + $100 once game reaches $1000 refer to winner.html
 const playGame = () => {
-  cardsHandArr.innerText = 'Cards ~ '
-  dealerHandArr.innerText = 'Dealer ~ '
-  for (let i = 0; i < cardsHandArr.length; i++) {
-    cardsHandArr.textContent + cardsHandArr[i]
-  }
-  for (let i = 0; i < dealerHandArr.length; i++) {
-    dealerHandArr.textContent + dealerHandArr[i]
-    //update sum
-    //check for win
-  }
+  cardsHand.append('Cards ~ ' + cardsHandArr)
+  dealerHand.append('Dealer ~ ' + dealerHandArr)
+  //update sum
+  //check for win
 }
 
 ///deal new card if requested
 const dealCard = () => {
   if (stillPlaying === true && blackJack === false) {
-    let card = randomCard()
-    sum += card
-    cardsPlayer.push(card)
+    let card = deck.pop(card)
+    //sum += card
+    cardsHandArr.push(card)
     playGame()
   }
 }
