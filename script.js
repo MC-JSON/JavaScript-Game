@@ -25,10 +25,11 @@ let faces = [
 ]
 let gameOver = false
 let playerWins = false
+let blackJack = false
 const btn = document.getElementById('start')
 const bttn = document.getElementById('hit')
 const buttn = document.getElementById('stay')
-const button = document.getElementById('replay')
+const btton = document.getElementById('replay')
 const cardsHand = document.getElementById('pcard')
 const dealerHand = document.getElementById('dcard')
 const playerBank = document.getElementById('bank')
@@ -42,13 +43,13 @@ playerBank.innerHTML = 'Bank ~ $' + bank
 const buildDeck = () => {
   for (let i = 0; i < suits.length; i++) {
     for (let x = 0; x < faces.length; x++) {
-      let amount = parseInt(faces[x])
+      let sum = parseInt(faces[x])
       if (faces[x] == 'J' || faces[x] == 'Q' || faces[x] == 'K') {
-        return (amount = 10)
+        return (sum = 10)
       } else if (faces[x] == 'A') {
-        return (amount = 1)
+        return (sum = 1)
       }
-      let card = { Suit: suits[i], Faces: faces[x], Amount: amount }
+      let card = { Suit: suits[i], Faces: faces[x], Sum: sum }
       deck.push(card)
     }
   }
@@ -70,12 +71,10 @@ const dealCards = () => {
     cardsHandArr.push(card)
     dealerHandArr.push(card)
   }
-  // updateDeck()
 }
 
 ///how to start game (ie deal cards)
 const startGame = () => {
-  console.log('test')
   buildDeck()
   shuffle()
   dealCards()
@@ -103,7 +102,7 @@ const playGame = () => {
       cardsHandArr[3].Suit
   )
   updateSum()
-  //endGame()
+  endGame()
 }
 
 //check for end of game scenario
@@ -118,68 +117,77 @@ const endGame = () => {
   if (sumPlayer > 21) {
     playerWins = false
     gameOver = true
+  } else if ((sumPlayer = 21)) {
+    playerWins = true
+    blackJack = true
+    gameOver = true
+    bank += 100
   } else if (sumDealer > 21) {
     playerWins = true
     gameOver = true
+    bank += 100
   } else if (gameOver) {
     if (sumPlayer > sumDealer) {
       playerWins = true
+      bank += 100
     } else {
       playerWins = false
     }
+  }
+  if ((bank = 1000)) {
+    gameOver = true
   }
 }
 
 ///deal new card if requested
 const dealCard = () => {
-  if (stillPlaying === true && blackJack === false) {
+  if (gameOver === false && blackJack === false) {
     let card = deck.pop(card)
-    //sum += card
     cardsHandArr.push(card)
-    playGame()
+    updateSum()
+    endGame()
   }
 }
 
-// const stayHand = () => {
-//   gameOver = false
-//   endGame()
-//   updateSum()
-// }
+const stayHand = () => {
+  gameOver = false
+  endGame()
+  updateSum()
+}
 
-///replay to play next hand
-// const newHand = () => {
-//   cardsHand = []
-//   dealerHand = []
-//   sumPlayer = 0
-//   sumDealer = 0
-//   gameOver = false
-//   playerWins = false
-//   startGame()
-// }
+//replay to play next hand
+const newHand = () => {
+  //reset player and dealer cards
+  sumPlayer = 0
+  sumDealer = 0
+  gameOver = false
+  playerWins = false
+  startGame()
+}
 
 let updateSum = () => {
   sumPlayer = getSum(cardsHandArr)
   sumDealer = getSum(dealerHandArr)
 }
 
-let getSum = () => {
+let getSum = (cardsHandArr) => {
   let sum = 0
   let ace = false
-  for (let i = 0; i < Array.length; i++) {
-    let card = array[i]
+  for (let i = 0; i < cardsHandArr.length; i++) {
+    let card = cardsHandArr[i]
     sum += card
     if (card.faces == 'Ace') {
       ace = true
     }
-    if (ace && score + 10 <= 21) {
-      return score + 10
+    if (ace && sum + 10 <= 21) {
+      return sum + 10
     }
   }
-  return score
+  return sum
 }
 
 //Event Listeners
 btn.addEventListener('click', startGame)
 bttn.addEventListener('click', dealCard)
-//buttn.addEventListener('click', stay)
-// button.addEventListener('click', newHand)
+buttn.addEventListener('click', stayHand)
+btton.addEventListener('click', newHand)
