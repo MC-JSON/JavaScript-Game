@@ -1,13 +1,12 @@
 //Global Variables
-const cardsPlayer = []
-const cardsDealer = []
+let deck = []
 ///sum variable to keep track of score in hand
-const sumPlayer = 0
-const sumDealer = 0
-const bank = 300
-const message = ''
-const suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades']
-const faces = [
+let sumPlayer = 0
+let sumDealer = 0
+let bank = 300
+let message = ''
+let suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades']
+let faces = [
   'Ace',
   'King',
   'Queen',
@@ -37,43 +36,58 @@ playerBank.innerHTML = 'Bank ~ $' + bank
 
 //Functions below
 ///how to randomize cards to go into players/dealers hand
-const randomCard = () => {
-  let randomize = Math.floor(Math.random() * 13)
-  if (randomize > 10) {
-    return 10
-  } else if (randomize === 1) {
-    return 11
-  } else {
-    return randomize
+const buildDeck = () => {
+  for (let i = 0; i < suits.length; i++) {
+    for (let x = 0; x < faces.length; x++) {
+      let weight = parseInt(faces[x])
+      if (faces[x] == 'J' || faces[x] == 'Q' || faces[x] == 'K') weight = 10
+      if (faces[x] == 'A') weight = 11
+      let card = { Suit: suits[i], Faces: faces[x], Weight: weight }
+      deck.push(card)
+    }
   }
+}
+
+const shuffle = () => {
+  for (let i = 0; i < 100; i++) {
+    let position1 = Math.floor(Math.random() * deck.length)
+    let position2 = Math.floor(Math.random() * deck.length)
+    let tmp = deck[position1]
+    deck[position1] = deck[position2]
+    deck[position2] = tmp
+  }
+}
+
+const dealCards = () => {
+  for (let i = 0; i < 4; i++) {
+    let card = deck.pop()
+    cardsHandArr.push(card)
+    dealerHandArr.push(card)
+  }
+  // updateDeck()
 }
 
 ///how to start game (ie deal cards)
 const startGame = () => {
   console.log('test')
   stillPlaying = true
-  const firstCard = randomCard()
-  const secondCard = randomCard()
-  const thirdCard = randomCard()
-  const fourthCard = randomCard()
-  cardsHandArr.push(firstCard)
-  cardsHandArr.push(secondCard)
-  dealerHandArr.push(firstCard)
-  dealerHandArr.push(secondCard)
-  sumPlayer = firstCard + secondCard
-  sumDealer = thirdCard + fourthCard
+  buildDeck()
+  shuffle()
+  dealCards()
   playGame()
 }
 
 ///render game(ie play hand) - how to add cards to screen and render messages based on sum of cards; if blackjack or higher than dealer + $100 once game reaches $1000 refer to winner.html
 const playGame = () => {
-  cardsHand.innerText = 'Cards ~ '
-  dealerHand.innerText = 'Dealer ~ '
-  for (let i = 0; i < cardsHand.length; i++) {
-    cardsHand.textContent + cardsHand[i]
+  cardsHandArr.innerText = 'Cards ~ '
+  dealerHandArr.innerText = 'Dealer ~ '
+  for (let i = 0; i < cardsHandArr.length; i++) {
+    cardsHandArr.textContent + cardsHandArr[i]
   }
-  for (let i = 0; i < dealerHand.length; i++) {
-    dealerHand.textContent + dealerHand[i]
+  for (let i = 0; i < dealerHandArr.length; i++) {
+    dealerHandArr.textContent + dealerHandArr[i]
+    //update sum
+    //check for win
   }
 }
 
@@ -88,16 +102,16 @@ const dealCard = () => {
 }
 
 ///replay to play next hand
-const newHand = () => {
-  cardsPlayer = []
-  cardsDealer = []
-  sumPlayer = 0
-  sumDealer = 0
-  blackJack = false
-  startGame()
-}
+// const newHand = () => {
+//   cardsPlayer = []
+//   cardsDealer = []
+//   sumPlayer = 0
+//   sumDealer = 0
+//   blackJack = false
+//   startGame()
+// }
 
 //Event Listeners
 btn.addEventListener('click', startGame)
 bttn.addEventListener('click', dealCard)
-button.addEventListener('click', newHand)
+// button.addEventListener('click', newHand)
