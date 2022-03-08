@@ -1,7 +1,9 @@
 //Global Variables
-const cards = []
+const cardsPlayer = []
+const cardsDealer = []
 ///sum variable to keep track of score in hand
-const sum = 0
+const sumPlayer = 0
+const sumDealer = 0
 const bank = 300
 const message = ''
 const suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades']
@@ -22,15 +24,17 @@ const faces = [
 ]
 const blackJack = false
 const stillPlaying = false
+const playerWins = false
 const btn = document.getElementById('start')
 const bttn = document.getElementById('hit')
 const button = document.getElementById('replay')
 const cardsHand = document.getElementById('cards')
+const dealerHand = document.getElementById('dealer')
 const playerBank = document.getElementById('bank')
 playerBank.innerHTML = 'Bank ~ $' + bank
 
 //Functions below
-///how to randomize cards to go into players hand
+///how to randomize cards to go into players/dealers hand
 const randomCard = () => {}
 
 ///how to start game (ie deal cards)
@@ -38,8 +42,12 @@ const startGame = () => {
   stillPlaying = true
   const firstCard = randomCard()
   const secondCard = randomCard()
-  cards = [firstCard, secondCard]
-  sum = firstCard + secondCard
+  const thirdCard = randomCard()
+  const fourthCard = randomCard()
+  cardsPlayer = [firstCard, secondCard]
+  cardsDealer = [thirdCard, fourthCard]
+  sumPlayer = firstCard + secondCard
+  sumDealer = thirdCard + fourthCard
   playGame()
 }
 
@@ -53,15 +61,17 @@ const dealCard = () => {
   if (stillPlaying === true && blackJack === false) {
     let card = randomCard()
     sum += card
-    cards.push(card)
+    cardsPlayer.push(card)
     playGame()
   }
 }
 
 ///replay to play next hand
 const newHand = () => {
-  cards = []
-  sum = 0
+  cardsPlayer = []
+  cardsDealer = []
+  sumPlayer = 0
+  sumDealer = 0
   blackJack = false
   startGame()
 }
