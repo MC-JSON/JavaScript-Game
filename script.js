@@ -1,6 +1,6 @@
 //Global Variables
 let deck = []
-let card = null
+let card = ''
 ///sum variable to keep track of score in hand
 let sumPlayer = 0
 let sumDealer = 0
@@ -102,50 +102,56 @@ const playGame = () => {
       cardsHandArr[3].Suit
   )
   updateSum()
-  endGame()
+  //endGame()
 }
 
 //check for end of game scenario
-const endGame = () => {
-  updateSum()
-  if (gameOver) {
-    while (sumDealer < sumPlayer && sumPlayer <= 21 && sumDealer <= 21) {
-      dealerHand.dealCard()
-      updateSum()
-    }
-  }
-  if (sumPlayer > 21) {
-    playerWins = false
-    gameOver = true
-  } else if ((sumPlayer = 21)) {
-    playerWins = true
-    blackJack = true
-    gameOver = true
-    bank += 100
-  } else if (sumDealer > 21) {
-    playerWins = true
-    gameOver = true
-    bank += 100
-  } else if (gameOver) {
-    if (sumPlayer > sumDealer) {
-      playerWins = true
-      bank += 100
-    } else {
-      playerWins = false
-    }
-  }
-  if ((bank = 1000)) {
-    gameOver = true
-  }
-}
+// const endGame = () => {
+//   updateSum()
+//   if (gameOver) {
+//     while (sumDealer < sumPlayer && sumPlayer <= 21 && sumDealer <= 21) {
+//       dealerHand.dealCard()
+//       updateSum()
+//     }
+//   }
+//   if (sumPlayer > 21) {
+//     playerWins = false
+//     gameOver = true
+//   } else if ((sumPlayer = 21)) {
+//     playerWins = true
+//     blackJack = true
+//     gameOver = true
+//     bank += 100
+//   } else if (sumDealer > 21) {
+//     playerWins = true
+//     gameOver = true
+//     bank += 100
+//   } else if (gameOver) {
+//     if (sumPlayer > sumDealer) {
+//       playerWins = true
+//       bank += 100
+//     } else {
+//       playerWins = false
+//     }
+//   }
+//   if ((bank = 1000)) {
+//     gameOver = true
+//   }
+// }
 
 ///deal new card if requested
-const dealCard = () => {
+let dealCard = () => {
   if (gameOver === false && blackJack === false) {
-    let card = deck.pop(card)
+    buildDeck()
+    shuffle()
+    card = deck.pop(card)
     cardsHandArr.push(card)
+    cardsHand.append(
+      ' & ' + cardsHandArr[0].Faces,
+      ' of ' + cardsHandArr[0].Suit
+    )
     updateSum()
-    endGame()
+    //endGame()
   }
 }
 
