@@ -155,6 +155,7 @@ let dealsCardNext = () => {
       ' & ' + cardsHandArr[3].Faces,
       ' of ' + cardsHandArr[3].Suit
     )
+    bttns.removeEventListener('click', dealsCardNext)
     updateSum()
     endGame()
   }
@@ -169,10 +170,15 @@ let dealerCardNext = () => {
       ' & ' + dealerHandArr[2].Faces,
       ' of ' + dealerHandArr[2].Suit
     )
-    bttns.removeEventListener('click', dealsCardNext)
     updateSum()
     endGame()
   }
+}
+
+//Player elects to stay hand
+const stayHand = () => {
+  playerStands = true
+  endGame()
 }
 
 //check for end of game scenario
@@ -212,16 +218,8 @@ const endGame = () => {
   return bank
 }
 
-//Player elects to stay hand
-const stayHand = () => {
-  playerStands = true
-  updateSum()
-  endGame()
-}
-
 //replay to play next hand
 const newHand = () => {
-  //   //reset player and dealer cards
   sumPlayer = 0
   sumDealer = 0
   gameOver = false
