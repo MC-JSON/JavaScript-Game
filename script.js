@@ -26,6 +26,7 @@ let faces = [
 let gameOver = false
 let playerWins = false
 let blackJack = false
+let playerStands = false
 const btn = document.getElementById('start')
 const bttn = document.getElementById('hit')
 const buttn = document.getElementById('stay')
@@ -126,7 +127,7 @@ const playGame = () => {
       dealerHandArr[1].Suit
   )
   updateSum()
-  //endGame()
+  endGame()
 }
 
 //deal new card if requested
@@ -139,7 +140,7 @@ let dealCardNext = () => {
       ' of ' + cardsHandArr[2].Suit
     )
     updateSum()
-    // //endGame()
+    endGame()
   }
 }
 
@@ -153,7 +154,7 @@ let dealsCardNext = () => {
       ' of ' + cardsHandArr[3].Suit
     )
     updateSum()
-    // //endGame()
+    endGame()
   }
 }
 
@@ -167,48 +168,48 @@ let dealerCardNext = () => {
       ' of ' + dealerHandArr[2].Suit
     )
     updateSum()
-    // //endGame()
+    endGame()
   }
 }
 
 //check for end of game scenario
-// const endGame = () => {
-//   updateSum()
-//   if (gameOver) {
-//     while (sumDealer < sumPlayer && sumPlayer <= 21 && sumDealer <= 21) {
-//       dealerHand.dealerCardNext()
-//       updateSum()
-//     }
-//   }
-//   if (sumPlayer > 21) {
-//     playerWins = false
-//     gameOver = true
-//   } else if ((sumPlayer = 21)) {
-//     playerWins = true
-//     blackJack = true
-//     gameOver = true
-//     bank += 100
-//   } else if (sumDealer > 21) {
-//     playerWins = true
-//     gameOver = true
-//     bank += 100
-//   } else if (gameOver) {
-//     if (sumPlayer > sumDealer) {
-//       playerWins = true
-//       bank += 100
-//     } else {
-//       playerWins = false
-//     }
-//   }
-//   if ((bank = 1000)) {
-//     gameOver = true
-//   }
-// }
+const endGame = () => {
+  if (playerStands) {
+    console.log(playerStands)
+    while (sumDealer < sumPlayer && sumPlayer <= 21 && sumDealer <= 21) {
+      dealerCardNext()
+      updateSum()
+    }
+  }
+  if (sumPlayer > 21) {
+    playerWins = false
+    gameOver = true
+  } else if ((sumPlayer = 21)) {
+    playerWins = true
+    blackJack = true
+    gameOver = true
+    bank += 100
+  } else if (sumDealer > 21) {
+    playerWins = true
+    gameOver = true
+    bank += 100
+  } else if (playerStands) {
+    if (sumPlayer > sumDealer) {
+      playerWins = true
+      bank += 100
+    } else {
+      playerWins = false
+    }
+  }
+  if ((bank = 1000)) {
+    gameOver = true
+  }
+}
 
 //Player elects to stay hand
 const stayHand = () => {
-  gameOver = true
-  // endGame()
+  playerStands = true
+  endGame()
   updateSum()
 }
 
@@ -233,7 +234,7 @@ let updateSum = () => {
   sumDealer = getSumDealer(dealerHandArr)
 }
 
-function to calculate sums player
+//function to calculate sums player
 let getSum = () => {
   let sum = 0
   // let ace = false
@@ -249,7 +250,6 @@ let getSum = () => {
   }
   return sum
 }
-
 
 //function to calculate sums dealer
 let getSumDealer = () => {
