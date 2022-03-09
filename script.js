@@ -190,7 +190,7 @@ const endGame = () => {
   console.log(sumPlayer)
   console.log(sumDealer)
   if (playerStands) {
-    while (sumDealer < sumPlayer && sumPlayer < 21 && sumDealer < 21) {
+    while (sumDealer < sumPlayer && sumPlayer <= 21 && sumDealer <= 21) {
       dealerCardNext()
       updateSum()
     }
@@ -215,10 +215,10 @@ const endGame = () => {
       playerWins = false
     }
   }
-  if ((bank = 1000)) {
-    gameOver = true
-  }
-  return bank
+  // if ((bank = 1000)) {
+  //   gameOver = true
+  // }
+  // return bank
 }
 
 //replay to play next hand
