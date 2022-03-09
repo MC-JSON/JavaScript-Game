@@ -133,7 +133,10 @@ const playGame = () => {
 
 //deal new card if requested
 let dealCardNext = () => {
+  console.log(gameOver)
+  console.log(blackJack)
   if (gameOver === false && blackJack === false) {
+    console.log('test')
     card = deck.pop(card)
     cardsHandArr.push(card)
     cardsHand.append(
@@ -181,7 +184,7 @@ const stayHand = () => {
   endGame()
 }
 
-//check for end of game scenario
+// //check for end of game scenario
 const endGame = () => {
   console.log(playerStands)
   console.log(sumPlayer)
@@ -195,7 +198,7 @@ const endGame = () => {
   if (sumPlayer > 21) {
     playerWins = false
     gameOver = true
-  } else if ((sumPlayer = 21)) {
+  } else if (sumPlayer === 21) {
     playerWins = true
     blackJack = true
     gameOver = true
@@ -212,9 +215,9 @@ const endGame = () => {
       playerWins = false
     }
   }
-  // if ((bank = 1000)) {
-  //   gameOver = true
-  // }
+  if ((bank = 1000)) {
+    gameOver = true
+  }
   return bank
 }
 
