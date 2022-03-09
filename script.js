@@ -63,13 +63,11 @@ const shuffle = () => {
 
 //deal cards into players and dealers hand
 const dealCards = () => {
-  for (let i = 0; i < 10; i++) {
-    let card = deck.pop()
-    cardsHandArr.push(card)
-    for (let x = 0; x < 10; x++) {
-      let card = deck.pop()
-      dealerHandArr.push(card)
-    }
+  for (let i = 0; i < 2; i++) {
+    let cardP = deck.pop()
+    let cardD = deck.pop()
+    cardsHandArr.push(cardP)
+    dealerHandArr.push(cardD)
   }
 }
 
@@ -235,37 +233,37 @@ let updateSum = () => {
   sumDealer = getSumDealer(dealerHandArr)
 }
 
-//function to calculate sums player
+function to calculate sums player
 let getSum = () => {
   let sum = 0
-  console.log(sum)
-  let ace = false
+  // let ace = false
   for (let i = 0; i < cardsHandArr.length; i++) {
     let card = cardsHandArr[i]
-    sum += card
-    if (card.Faces == 'Ace') {
-      ace = true
-    }
-    if (ace && sum + 10 <= 21) {
-      return sum + 10
-    }
+    sum += getCardValue(card)
+    // if (card.Faces === 'Ace') {
+    //   ace = true
+    // }
+    // if (ace && sum + 10 <= 21) {
+    //   return sum + 10
+    // }
   }
   return sum
 }
 
+
 //function to calculate sums dealer
 let getSumDealer = () => {
   let sum = 0
-  let ace = false
+  // let ace = false
   for (let i = 0; i < dealerHandArr.length; i++) {
     let card = dealerHandArr[i]
-    sum += card
-    if (card.Faces == 'Ace') {
-      ace = true
-    }
-    if (ace && sum + 10 <= 21) {
-      return sum + 10
-    }
+    sum += getCardValue(card)
+    // if (card.Faces === 'Ace') {
+    //   ace = true
+    // }
+    // if (ace && sum + 10 <= 21) {
+    //   return sum + 10
+    // }
   }
   return sum
 }
