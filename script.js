@@ -43,16 +43,11 @@ playerBank.innerHTML = 'Bank ~ $' + bank
 const buildDeck = () => {
   for (let i = 0; i < suits.length; i++) {
     for (let x = 0; x < faces.length; x++) {
-      let sum = parseInt(faces[x])
-      if (faces[x] == 'J' || faces[x] == 'Q' || faces[x] == 'K') {
-        return (sum = 10)
-      } else if (faces[x] == 'A') {
-        return (sum = 1)
-      }
-      let card = { Suit: suits[i], Faces: faces[x], Sum: sum }
+      let card = { Suit: suits[i], Faces: faces[x] }
       deck.push(card)
     }
   }
+  return deck
 }
 
 const shuffle = () => {
@@ -73,7 +68,7 @@ const dealCards = () => {
   }
 }
 
-///how to start game (ie deal cards)
+///how to start game (ie deal cards) -- stop and return
 const startGame = () => {
   buildDeck()
   shuffle()
@@ -103,6 +98,46 @@ const playGame = () => {
   )
   updateSum()
   //endGame()
+}
+
+///deal new card if requested -- stop and return
+let dealCard = () => {
+  if (gameOver === false && blackJack === false) {
+    card = deck.pop(card)
+    cardsHandArr.push(card)
+    cardsHand.append(
+      ' & ' + cardsHandArr[4].Faces,
+      ' of ' + cardsHandArr[4].Suit
+    )
+    updateSum()
+    // //endGame()
+  }
+}
+
+//Get card values
+let getCardValue = (card) => {
+  switch (card.Faces) {
+    case 'Ace':
+      return 1
+    case 'Two':
+      return 2
+    case 'Three':
+      return 3
+    case 'Four':
+      return 4
+    case 'Five':
+      return 5
+    case 'Six':
+      return 6
+    case 'Seven':
+      return 7
+    case 'Eight':
+      return 8
+    case 'Nine':
+      return 9
+    default:
+      return 10
+  }
 }
 
 //check for end of game scenario
@@ -139,22 +174,8 @@ const endGame = () => {
   }
 }
 
-///deal new card if requested
-let dealCard = () => {
-  if (gameOver === false && blackJack === false) {
-    card = deck.pop(card)
-    cardsHandArr.push(card)
-    cardsHand.append(
-      ' & ' + cardsHandArr[4].Faces,
-      ' of ' + cardsHandArr[4].Suit
-    )
-    updateSum()
-    // //endGame()
-  }
-}
-
 const stayHand = () => {
-  gameOver = false
+  gameOver = true
   endGame()
   updateSum()
 }
