@@ -38,6 +38,15 @@ button {
   border: 3px dotted whitesmoke;
   padding: 3px 0 0 0;
 }
+
+#banksy {
+  position: absolute;
+  bottom: 400px;
+  font-size: 25px;
+  border: 3px dotted whitesmoke;
+  padding: 3px 0 0 0;
+}
+
 #message {
   text-decoration: underline;
 }
