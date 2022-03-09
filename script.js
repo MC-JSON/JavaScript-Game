@@ -104,6 +104,7 @@ const startGame = () => {
   shuffle()
   dealCards()
   playGame()
+  btn.removeEventListener('click', startGame)
 }
 
 //render game(ie play hand) - how to add cards to screen and render messages based on sum of cards; if blackjack or higher than dealer + $100 once game reaches $1000
@@ -139,6 +140,7 @@ let dealCardNext = () => {
       ' & ' + cardsHandArr[2].Faces,
       ' of ' + cardsHandArr[2].Suit
     )
+    bttn.removeEventListener('click', dealCardNext)
     updateSum()
     endGame()
   }
@@ -167,6 +169,7 @@ let dealerCardNext = () => {
       ' & ' + dealerHandArr[2].Faces,
       ' of ' + dealerHandArr[2].Suit
     )
+    bttns.removeEventListener('click', dealsCardNext)
     updateSum()
     endGame()
   }
@@ -174,9 +177,11 @@ let dealerCardNext = () => {
 
 //check for end of game scenario
 const endGame = () => {
+  console.log(playerStands)
+  console.log(sumPlayer)
+  console.log(sumDealer)
   if (playerStands) {
-    console.log(playerStands)
-    while (sumDealer < sumPlayer && sumPlayer <= 21 && sumDealer <= 21) {
+    while (sumDealer < sumPlayer && sumPlayer < 21 && sumDealer < 21) {
       dealerCardNext()
       updateSum()
     }
@@ -201,16 +206,17 @@ const endGame = () => {
       playerWins = false
     }
   }
-  if ((bank = 1000)) {
-    gameOver = true
-  }
+  // if ((bank = 1000)) {
+  //   gameOver = true
+  // }
+  return bank
 }
 
 //Player elects to stay hand
 const stayHand = () => {
   playerStands = true
-  endGame()
   updateSum()
+  endGame()
 }
 
 //replay to play next hand
@@ -225,6 +231,8 @@ const newHand = () => {
   dealerHandArr = []
   document.getElementById('pcard').innerHTML = []
   document.getElementById('dcard').innerHTML = []
+  bttn.addEventListener('click', dealCardNext)
+  bttns.addEventListener('click', dealsCardNext)
   startGame()
 }
 
