@@ -40,7 +40,7 @@ playerBank.innerHTML = 'Bank ~ $' + bank
 
 //Functions below
 
-///how to randomize cards to go into players/dealers hand
+//build deck and randomize cards to go into players/dealers hand
 const buildDeck = () => {
   for (let i = 0; i < suits.length; i++) {
     for (let x = 0; x < faces.length; x++) {
@@ -61,6 +61,7 @@ const shuffle = () => {
   }
 }
 
+//deal cards into players and dealers hand
 const dealCards = () => {
   for (let i = 0; i < 10; i++) {
     let card = deck.pop()
@@ -98,7 +99,7 @@ let getCardValue = (card) => {
   }
 }
 
-///how to start game (ie deal cards) -- stop and return
+//how to start game (ie deal cards) -- stop and return
 const startGame = () => {
   buildDeck()
   shuffle()
@@ -106,7 +107,7 @@ const startGame = () => {
   playGame()
 }
 
-///render game(ie play hand) - how to add cards to screen and render messages based on sum of cards; if blackjack or higher than dealer + $100 once game reaches $1000 refer to winner.html
+//render game(ie play hand) - how to add cards to screen and render messages based on sum of cards; if blackjack or higher than dealer + $100 once game reaches $1000
 const playGame = () => {
   cardsHand.append(
     cardsHandArr[0].Faces,
@@ -126,11 +127,11 @@ const playGame = () => {
       ' of ' +
       dealerHandArr[1].Suit
   )
-  // updateSum()
+  updateSum()
   //endGame()
 }
 
-///deal new card if requested -- stop and return
+//deal new card if requested
 let dealCardNext = () => {
   if (gameOver === false && blackJack === false) {
     card = deck.pop(card)
@@ -139,11 +140,12 @@ let dealCardNext = () => {
       ' & ' + cardsHandArr[2].Faces,
       ' of ' + cardsHandArr[2].Suit
     )
-    // updateSum()
+    updateSum()
     // //endGame()
   }
 }
 
+//deal new card if requested again
 let dealsCardNext = () => {
   if (gameOver === false && blackJack === false) {
     card = deck.pop(card)
@@ -152,11 +154,12 @@ let dealsCardNext = () => {
       ' & ' + cardsHandArr[3].Faces,
       ' of ' + cardsHandArr[3].Suit
     )
-    // updateSum()
+    updateSum()
     // //endGame()
   }
 }
 
+//function for dealing of dealers hand
 let dealerCardNext = () => {
   if (gameOver === false && blackJack === false) {
     card = deck.pop(card)
@@ -165,7 +168,7 @@ let dealerCardNext = () => {
       ' & ' + dealerHandArr[2].Faces,
       ' of ' + dealerHandArr[2].Suit
     )
-    // updateSum()
+    updateSum()
     // //endGame()
   }
 }
@@ -208,10 +211,10 @@ let dealerCardNext = () => {
 const stayHand = () => {
   gameOver = true
   // endGame()
-  // updateSum()
+  updateSum()
 }
 
-// //replay to play next hand
+//replay to play next hand
 const newHand = () => {
   //   //reset player and dealer cards
   sumPlayer = 0
@@ -226,17 +229,20 @@ const newHand = () => {
   startGame()
 }
 
+//function to update sum of card arrays
 let updateSum = () => {
-  sumPlayer = getSum(cardsHandArr.card.Faces)
-  sumDealer = getSum(dealerHandArr.card.Faces)
+  sumPlayer = getSum(cardsHandArr)
+  sumDealer = getSumDealer(dealerHandArr)
 }
 
-let getSum = (cardsHandArr) => {
+//function to calculate sums player
+let getSum = () => {
   let sum = 0
+  console.log(sum)
   let ace = false
   for (let i = 0; i < cardsHandArr.length; i++) {
     let card = cardsHandArr[i]
-    sum += card.Faces
+    sum += card
     if (card.Faces == 'Ace') {
       ace = true
     }
@@ -247,12 +253,13 @@ let getSum = (cardsHandArr) => {
   return sum
 }
 
-let getSumDealer = (dealerHandArr) => {
+//function to calculate sums dealer
+let getSumDealer = () => {
   let sum = 0
   let ace = false
   for (let i = 0; i < dealerHandArr.length; i++) {
     let card = dealerHandArr[i]
-    sum += card.Faces
+    sum += card
     if (card.Faces == 'Ace') {
       ace = true
     }
