@@ -189,6 +189,7 @@ const endGame = () => {
       dealerCardNext()
       updateSum()
       endGame()
+      return
     }
   }
   if (sumPlayer > 21) {
@@ -211,6 +212,8 @@ const endGame = () => {
       dealerWins = true
     }
   }
+  messaging()
+  banking()
 }
 
 //replay to play next hand
@@ -222,11 +225,12 @@ const newHand = () => {
   blackJack = false
   cardsHandArr = []
   dealerHandArr = []
+  message.innerText = 'Play on!'
   document.getElementById('pcard').innerHTML = []
   document.getElementById('dcard').innerHTML = []
+  btn.addEventListener('click', startGame)
   bttn.addEventListener('click', dealCardNext)
   bttns.addEventListener('click', dealsCardNext)
-  startGame()
 }
 
 //function to update sum of card arrays
@@ -270,19 +274,24 @@ let getSumDealer = () => {
 }
 
 let messaging = () => {
-  console.log(blackJack)
-  if (blackJack === true && playerWins === true) {
-    console.log(blackJack.value)
-    console.log(playerWins.value)
-    document.getElementById('message') = 'Blackjack! You win!'
-  } else if (playerWins === true) {
-    console.log(playerWins.value)
-    document.getElementById('message') = 'You win!'
-  } else if (dealerWins === true) {
-    console.log(dealerWins.value)
-    document.getElementById('message') = 'Dealer wins!'
+  if (blackJack == true && playerWins == true) {
+    message.innerText = 'Blackjack! You win!'
+  } else if (playerWins == true) {
+    message.innerText = 'You win!'
+  } else if (dealerWins == true) {
+    message.innerText = 'Dealer wins!'
   } else {
-    document.getElementById('message') = 'Play on!'
+    message.innerText = 'Play on!'
+  }
+}
+
+let banking = () => {
+  if (blackJack == true && playerWins == true) {
+    bank += 200
+  } else if (playerWins == true) {
+    bank += 100
+  } else if (dealerWins == true) {
+    bank -= 100
   }
 }
 
