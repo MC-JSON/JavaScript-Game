@@ -25,6 +25,7 @@ let faces = [
 ]
 let gameOver = false
 let playerWins = false
+let dealerWins = false
 let blackJack = false
 let playerStands = false
 const btn = document.getElementById('start')
@@ -133,10 +134,7 @@ const playGame = () => {
 
 //deal new card if requested
 let dealCardNext = () => {
-  console.log(gameOver)
-  console.log(blackJack)
   if (gameOver === false && blackJack === false) {
-    console.log('test')
     card = deck.pop(card)
     cardsHandArr.push(card)
     cardsHand.append(
@@ -186,13 +184,11 @@ const stayHand = () => {
 
 // //check for end of game scenario
 const endGame = () => {
-  console.log(playerStands)
-  console.log(sumPlayer)
-  console.log(sumDealer)
   if (playerStands) {
     while (sumDealer < sumPlayer && sumPlayer <= 21 && sumDealer <= 21) {
       dealerCardNext()
       updateSum()
+      endGame()
     }
   }
   if (sumPlayer > 21) {
@@ -202,23 +198,19 @@ const endGame = () => {
     playerWins = true
     blackJack = true
     gameOver = true
-    bank += 100
+    // bank += 100
   } else if (sumDealer > 21) {
     playerWins = true
     gameOver = true
-    bank += 100
+    // bank += 100
   } else if (playerStands) {
     if (sumPlayer > sumDealer) {
       playerWins = true
-      bank += 100
+      // bank += 100
     } else {
-      playerWins = false
+      dealerWins = true
     }
   }
-  // if ((bank = 1000)) {
-  //   gameOver = true
-  // }
-  // return bank
 }
 
 //replay to play next hand
@@ -275,6 +267,23 @@ let getSumDealer = () => {
     // }
   }
   return sum
+}
+
+let messaging = () => {
+  console.log(blackJack)
+  if (blackJack === true && playerWins === true) {
+    console.log(blackJack.value)
+    console.log(playerWins.value)
+    document.getElementById('message') = 'Blackjack! You win!'
+  } else if (playerWins === true) {
+    console.log(playerWins.value)
+    document.getElementById('message') = 'You win!'
+  } else if (dealerWins === true) {
+    console.log(dealerWins.value)
+    document.getElementById('message') = 'Dealer wins!'
+  } else {
+    document.getElementById('message') = 'Play on!'
+  }
 }
 
 //Event Listeners
