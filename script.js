@@ -32,7 +32,6 @@ const btn = document.getElementById('start')
 const bttn = document.getElementById('hit')
 const buttn = document.getElementById('stay')
 const btton = document.getElementById('replay')
-const bttns = document.getElementById('replaytwo')
 let cardsHand = document.getElementById('pcard')
 let dealerHand = document.getElementById('dcard')
 let playerBank = document.getElementById('bank')
@@ -138,25 +137,9 @@ let dealCardNext = () => {
     card = deck.pop(card)
     cardsHandArr.push(card)
     cardsHand.append(
-      ' & ' + cardsHandArr[2].Faces,
-      ' of ' + cardsHandArr[2].Suit
+      ' & ' + cardsHandArr[cardsHandArr.length - 1].Faces,
+      ' of ' + cardsHandArr[cardsHandArr.length - 1].Suit
     )
-    bttn.removeEventListener('click', dealCardNext)
-    updateSum()
-    endGame()
-  }
-}
-
-//deal new card if requested again
-let dealsCardNext = () => {
-  if (gameOver === false && blackJack === false) {
-    card = deck.pop(card)
-    cardsHandArr.push(card)
-    cardsHand.append(
-      ' & ' + cardsHandArr[3].Faces,
-      ' of ' + cardsHandArr[3].Suit
-    )
-    bttns.removeEventListener('click', dealsCardNext)
     updateSum()
     endGame()
   }
@@ -168,8 +151,8 @@ let dealerCardNext = () => {
     card = deck.pop(card)
     dealerHandArr.push(card)
     dealerHand.append(
-      ' & ' + dealerHandArr[2].Faces,
-      ' of ' + dealerHandArr[2].Suit
+      ' & ' + dealerHandArr[dealerHandArr.length - 1].Faces,
+      ' of ' + dealerHandArr[dealerHandArr.length - 1].Suit
     )
     updateSum()
     endGame()
@@ -230,7 +213,6 @@ const newHand = () => {
   document.getElementById('dcard').innerHTML = []
   btn.addEventListener('click', startGame)
   bttn.addEventListener('click', dealCardNext)
-  bttns.addEventListener('click', dealsCardNext)
 }
 
 //function to update sum of card arrays
@@ -298,6 +280,5 @@ let banking = () => {
 //Event Listeners
 btn.addEventListener('click', startGame)
 bttn.addEventListener('click', dealCardNext)
-bttns.addEventListener('click', dealsCardNext)
 buttn.addEventListener('click', stayHand)
 btton.addEventListener('click', newHand)
