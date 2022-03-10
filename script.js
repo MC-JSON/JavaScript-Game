@@ -4,7 +4,6 @@ let card = ''
 ///sum variable to keep track of score in hand
 let sumPlayer = 0
 let sumDealer = 0
-let amount = 0
 let bank = 300
 let message = document.getElementById('message')
 let suits = ['♣', '♦', '♥', '♠']
@@ -98,7 +97,7 @@ let getCardValue = (card) => {
   }
 }
 
-//how to start game (ie deal cards) -- stop and return
+//how to start game
 const startGame = () => {
   buildDeck()
   shuffle()
@@ -107,7 +106,7 @@ const startGame = () => {
   btn.removeEventListener('click', startGame)
 }
 
-//render game(ie play hand) - how to add cards to screen and render messages based on sum of cards; if blackjack or higher than dealer + $100 once game reaches $1000
+//render game(ie play hand) - how to add cards to screen
 const playGame = () => {
   cardsHand.append(
     cardsHandArr[0].Faces,
@@ -150,6 +149,7 @@ let dealerCardNext = () => {
   if (gameOver === false && blackJack === false) {
     card = deck.pop(card)
     dealerHandArr.push(card)
+    console.log(dealerHand)
     dealerHand.append(
       ' & ' + dealerHandArr[dealerHandArr.length - 1].Faces,
       ' of ' + dealerHandArr[dealerHandArr.length - 1].Suit
@@ -165,7 +165,7 @@ const stayHand = () => {
   endGame()
 }
 
-// //check for end of game scenario
+//check for end of game scenario
 const endGame = () => {
   if (playerStands) {
     while (sumDealer < sumPlayer && sumPlayer <= 21 && sumDealer <= 21) {
@@ -174,6 +174,11 @@ const endGame = () => {
       endGame()
       return
     }
+  }
+  if (sumDealer === sumPlayer) {
+    dealerCardNext()
+    updateSum()
+    endGame()
   }
   if (sumPlayer > 21) {
     playerWins = false
@@ -233,11 +238,11 @@ let getSum = () => {
   for (let i = 0; i < cardsHandArr.length; i++) {
     let card = cardsHandArr[i]
     sum += getCardValue(card)
-    if (card.Faces === 'Ace') {
+    if (card.Faces == 'Ace') {
       ace = true
     }
     if (ace && sum + 10 <= 21) {
-      return sum + 10
+      sum += 10
     }
   }
   return sum
@@ -254,7 +259,7 @@ let getSumDealer = () => {
       ace = true
     }
     if (ace && sum + 10 <= 21) {
-      return sum + 10
+      sum += 10
     }
   }
   return sum
