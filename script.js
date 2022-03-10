@@ -177,6 +177,7 @@ const endGame = () => {
   }
   if (sumPlayer > 21) {
     playerWins = false
+    dealerWins = true
     gameOver = true
   } else if (sumPlayer === 21) {
     playerWins = true
