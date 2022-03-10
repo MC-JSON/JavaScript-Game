@@ -183,15 +183,12 @@ const endGame = () => {
     playerWins = true
     blackJack = true
     gameOver = true
-    // bank += 100
   } else if (sumDealer > 21) {
     playerWins = true
     gameOver = true
-    // bank += 100
   } else if (playerStands) {
     if (sumPlayer > sumDealer) {
       playerWins = true
-      // bank += 100
     } else {
       dealerWins = true
     }
@@ -205,6 +202,7 @@ const newHand = () => {
   sumPlayer = 0
   sumDealer = 0
   gameOver = false
+  dealerWins = false
   playerWins = false
   blackJack = false
   cardsHandArr = []
@@ -213,7 +211,6 @@ const newHand = () => {
   document.getElementById('pcard').innerHTML = []
   document.getElementById('dcard').innerHTML = []
   btn.addEventListener('click', startGame)
-  bttn.addEventListener('click', dealCardNext)
 }
 
 //function to update sum of card arrays
@@ -271,11 +268,15 @@ let messaging = () => {
 let banking = () => {
   if (blackJack == true && playerWins == true) {
     bank += 200
+    playerBank.innerHTML = 'Bank ~ $' + bank
   } else if (playerWins == true) {
     bank += 100
+    playerBank.innerHTML = 'Bank ~ $' + bank
   } else if (dealerWins == true) {
     bank -= 100
+    playerBank.innerHTML = 'Bank ~ $' + bank
   }
+  return bank
 }
 
 //Event Listeners
