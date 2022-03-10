@@ -1,6 +1,6 @@
 # JavaScript-Game
 
-## Date: 03/06/2022
+## Date: 03/11/2022
 
 ### By: Jason McCoy
 
@@ -29,3 +29,7 @@
 #### Click 'Start Game' to begin the card game.
 
 ### **_Credits_**
+
+#### Building of Deck/Shuffling of deck inspired by [ThatSoftwareDude](https://www.thatsoftwaredude.com/content/6196/coding-a-card-deck-in-javascript)
+
+#### Credit to John Jacobs for the direction
