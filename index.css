@@ -52,9 +52,24 @@ button {
 }
 
 #instructions {
-  position: absolute;
+  margin: auto;
+  position: relative;
+  top: 400px;
   bottom: 0;
-  left: 665px;
+  left: 0;
+  right: 0;
+  font-size: 25px;
+  text-decoration: none;
+  padding: 3px 0 0 0;
+}
+
+#home {
+  margin: auto;
+  position: relative;
+  top: 600px;
+  bottom: 0;
+  left: 0;
+  right: 0;
   font-size: 25px;
   text-decoration: none;
   padding: 3px 0 0 0;
