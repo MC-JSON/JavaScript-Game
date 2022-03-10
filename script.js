@@ -183,6 +183,10 @@ const endGame = () => {
     playerWins = true
     blackJack = true
     gameOver = true
+  } else if (sumDealer === 21) {
+    dealerWins = true
+    blackJack = true
+    gameOver = true
   } else if (sumDealer > 21) {
     playerWins = true
     gameOver = true
@@ -191,10 +195,12 @@ const endGame = () => {
       playerWins = true
     } else {
       dealerWins = true
+      console.log(dealerWins)
     }
   }
   messaging()
   banking()
+  return
 }
 
 //replay to play next hand
@@ -205,6 +211,7 @@ const newHand = () => {
   dealerWins = false
   playerWins = false
   blackJack = false
+  playerStands = false
   cardsHandArr = []
   dealerHandArr = []
   message.innerText = 'Play on!'
