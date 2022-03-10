@@ -154,8 +154,8 @@ let dealerCardNext = () => {
       ' & ' + dealerHandArr[dealerHandArr.length - 1].Faces,
       ' of ' + dealerHandArr[dealerHandArr.length - 1].Suit
     )
-    updateSum()
-    endGame()
+    // updateSum()
+    // endGame()
   }
 }
 
@@ -222,16 +222,16 @@ let updateSum = () => {
 //function to calculate sums player
 let getSum = () => {
   let sum = 0
-  // let ace = false
+  let ace = false
   for (let i = 0; i < cardsHandArr.length; i++) {
     let card = cardsHandArr[i]
     sum += getCardValue(card)
-    // if (card.Faces === 'Ace') {
-    //   ace = true
-    // }
-    // if (ace && sum + 10 <= 21) {
-    //   return sum + 10
-    // }
+    if (card.Faces === 'Ace') {
+      ace = true
+    }
+    if (ace && sum + 10 <= 21) {
+      return sum + 10
+    }
   }
   return sum
 }
@@ -239,16 +239,16 @@ let getSum = () => {
 //function to calculate sums dealer
 let getSumDealer = () => {
   let sum = 0
-  // let ace = false
+  let ace = false
   for (let i = 0; i < dealerHandArr.length; i++) {
     let card = dealerHandArr[i]
     sum += getCardValue(card)
-    // if (card.Faces === 'Ace') {
-    //   ace = true
-    // }
-    // if (ace && sum + 10 <= 21) {
-    //   return sum + 10
-    // }
+    if (card.Faces === 'Ace') {
+      ace = true
+    }
+    if (ace && sum + 10 <= 21) {
+      return sum + 10
+    }
   }
   return sum
 }
