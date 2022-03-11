@@ -1,4 +1,4 @@
-# JavaScript-Game
+# Blackjack-JavaScript-Game
 
 ## Date: 03/11/2022
 
