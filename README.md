@@ -24,7 +24,7 @@
 
 #### A Trello board is used to keep track of development and can be viewed at [Trello](https://trello.com/b/BdYIMpmZ/game-project)
 
-#### Deploy project from [ClassicBlackjack](https://high-star.surge.sh)
+#### Deploy project from [ClassicBlackjack](https://calculating-bread.surge.sh)
 
 #### Click 'Start Game' to begin the card game or 'Instructions' for further direction.
 
