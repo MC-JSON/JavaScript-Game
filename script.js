@@ -35,7 +35,7 @@ let dealerHand = document.getElementById('dcard')
 let playerBank = document.getElementById('bank')
 let cardsHandArr = []
 let dealerHandArr = []
-playerBank.innerHTML = 'Bank ~ $' + bank
+playerBank.innerHTML = 'Bank: $' + bank
 
 //Functions below
 
@@ -277,13 +277,13 @@ let messaging = () => {
 let banking = () => {
   if (blackJack == true && playerWins == true) {
     bank += 200
-    playerBank.innerHTML = 'Bank ~ $' + bank
+    playerBank.innerHTML = 'Bank: $' + bank
   } else if (playerWins == true) {
     bank += 100
-    playerBank.innerHTML = 'Bank ~ $' + bank
+    playerBank.innerHTML = 'Bank: $' + bank
   } else if (dealerWins == true) {
     bank -= 100
-    playerBank.innerHTML = 'Bank ~ $' + bank
+    playerBank.innerHTML = 'Bank: $' + bank
   }
   return bank
 }
