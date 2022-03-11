@@ -53,9 +53,9 @@ button {
 }
 
 #instructions {
-  margin: auto;
+  margin: 0;
   position: absolute;
-  top: 250px;
+  top: 700px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -90,4 +90,8 @@ button {
   margin-left: 2px;
   color: red;
   font-size: 50px;
+}
+
+a:hover {
+  color: red;
 }
