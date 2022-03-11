@@ -34,6 +34,7 @@ button {
 
 #direct {
   position: absolute;
+  bottom: 400px;
   font-size: 25px;
   border: 3px dotted whitesmoke;
   padding: 3px 0 0 0;
@@ -41,7 +42,7 @@ button {
 
 #banksy {
   position: absolute;
-  bottom: 400px;
+  bottom: 200px;
   font-size: 25px;
   border: 3px dotted whitesmoke;
   padding: 3px 0 0 0;
@@ -53,8 +54,8 @@ button {
 
 #instructions {
   margin: auto;
-  position: relative;
-  top: 400px;
+  position: absolute;
+  top: 250px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -66,7 +67,7 @@ button {
 #home {
   margin: auto;
   position: relative;
-  top: 600px;
+  top: 500px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -88,5 +89,5 @@ button {
   margin-top: 25px;
   margin-left: 2px;
   color: red;
-  font-size: 60px;
+  font-size: 50px;
 }
