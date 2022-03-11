@@ -164,7 +164,10 @@ const stayHand = () => {
 //check for end of game scenario
 const endGame = () => {
   if (playerStands) {
-    while (sumDealer < sumPlayer && sumPlayer <= 21 && sumDealer <= 21) {
+    while (
+      sumDealer < sumPlayer ||
+      (sumDealer === sumPlayer && sumPlayer <= 21 && sumDealer <= 21)
+    ) {
       dealerCardNext()
       updateSum()
       endGame()
