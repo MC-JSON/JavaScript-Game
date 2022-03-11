@@ -155,29 +155,19 @@ let dealerCardNext = () => {
   }
 }
 
-//Player elects to stay hand
-const stayHand = () => {
-  playerStands = true
-  endGame()
-}
-
 //check for end of game scenario
 const endGame = () => {
   if (playerStands) {
     while (
-      sumDealer < sumPlayer ||
-      (sumDealer === sumPlayer && sumPlayer <= 21 && sumDealer <= 21)
+      (sumDealer < sumPlayer || sumDealer === sumPlayer) &&
+      sumPlayer <= 21 &&
+      sumDealer <= 21
     ) {
       dealerCardNext()
       updateSum()
       endGame()
       return
     }
-  }
-  if (sumDealer === sumPlayer) {
-    dealerCardNext()
-    updateSum()
-    endGame()
   }
   if (sumPlayer > 21) {
     playerWins = false
@@ -204,6 +194,12 @@ const endGame = () => {
   messaging()
   banking()
   return
+}
+
+//Player elects to stay hand
+const stayHand = () => {
+  playerStands = true
+  endGame()
 }
 
 //replay to play next hand
