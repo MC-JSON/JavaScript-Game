@@ -1,7 +1,6 @@
 //Global Variables
 let deck = []
 let card = ''
-///sum variable to keep track of score in hand
 let sumPlayer = 0
 let sumDealer = 0
 let bank = 300
@@ -106,7 +105,7 @@ const startGame = () => {
   btn.removeEventListener('click', startGame)
 }
 
-//render game(ie play hand) - how to add cards to screen
+//render game(play hand) - how to add cards to screen
 const playGame = () => {
   cardsHand.append(
     cardsHandArr[0].Faces,
@@ -130,7 +129,7 @@ const playGame = () => {
   endGame()
 }
 
-//deal new card if requested
+//deal new card if requested by player
 let dealCardNext = () => {
   if (gameOver === false && blackJack === false) {
     card = deck.pop(card)
@@ -144,18 +143,15 @@ let dealCardNext = () => {
   }
 }
 
-//function for dealing of dealers hand
+//function for dealing of dealers remaining hand
 let dealerCardNext = () => {
   if (gameOver === false && blackJack === false) {
     card = deck.pop(card)
     dealerHandArr.push(card)
-    console.log(dealerHand)
     dealerHand.append(
       ' & ' + dealerHandArr[dealerHandArr.length - 1].Faces,
       ' of ' + dealerHandArr[dealerHandArr.length - 1].Suit
     )
-    // updateSum()
-    // endGame()
   }
 }
 
@@ -200,7 +196,6 @@ const endGame = () => {
       playerWins = true
     } else {
       dealerWins = true
-      console.log(dealerWins)
     }
   }
   messaging()
@@ -265,6 +260,7 @@ let getSumDealer = () => {
   return sum
 }
 
+//message return function
 let messaging = () => {
   if (blackJack == true && playerWins == true) {
     message.innerText = 'Blackjack! You win!'
@@ -277,6 +273,7 @@ let messaging = () => {
   }
 }
 
+//bank function
 let banking = () => {
   if (blackJack == true && playerWins == true) {
     bank += 200
