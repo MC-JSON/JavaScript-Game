@@ -171,12 +171,10 @@ const endGame = () => {
       return
     }
   }
-  if (playerStands) {
-    while (sumDealer === sumPlayer) {
-      dealerCardNext()
-      updateSum()
-      endGame()
-    }
+  if (sumDealer === sumPlayer) {
+    dealerCardNext()
+    updateSum()
+    endGame()
   }
   if (sumPlayer > 21) {
     playerWins = false
