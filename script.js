@@ -143,7 +143,7 @@ let dealCardNext = () => {
   }
 }
 
-//function for dealing of dealers remaining hand
+//function for dealing of dealers remaininghand
 let dealerCardNext = () => {
   if (gameOver === false && blackJack === false) {
     card = deck.pop(card)
@@ -171,10 +171,12 @@ const endGame = () => {
       return
     }
   }
-  if (sumDealer === sumPlayer) {
-    dealerCardNext()
-    updateSum()
-    endGame()
+  if (playerStands) {
+    while (sumDealer === sumPlayer) {
+      dealerCardNext()
+      updateSum()
+      endGame()
+    }
   }
   if (sumPlayer > 21) {
     playerWins = false
